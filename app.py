@@ -5,6 +5,7 @@ import dash_ag_grid as dag
 import pandas as pd
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = app.server
 
 df = pd.read_csv('./assets/sales_data_sample.csv')
 
@@ -206,4 +207,4 @@ def update_products_datatable(selected_product, selected_quarter):
 
 
 if __name__=='__main__':
-    app.run(debug=True)
+    app.run(debug=False)
