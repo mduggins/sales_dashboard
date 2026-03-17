@@ -9,8 +9,6 @@ server = app.server
 
 df = pd.read_csv('./assets/sales_data_sample.csv')
 
-# print(df.columns)
-
 app.layout = dbc.Container([
     dbc.Row([
         dbc.Col([
@@ -138,7 +136,7 @@ def update_avg_order_amt(selected_product, selected_quarter):
     if selected_quarter:
         filtered_df = filtered_df[filtered_df['QTR_ID'] == selected_quarter]
 
-    return f"${filtered_df['SALES'].mean():,.0f}"
+    return f"${filtered_df['SALES'].sum() / filtered_df['ORDERNUMBER'].nunique():,.0f}"
 
 @callback(
     Output('sales_by_product', 'figure'),
@@ -201,8 +199,6 @@ def update_products_datatable(selected_product, selected_quarter):
         'QTR_ID':'first'}).reset_index().round(2)
 
     return final_df.to_dict('records')
-
-
 
 
 
